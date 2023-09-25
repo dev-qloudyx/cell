@@ -1,0 +1,63 @@
+body{
+    background-color: rgb(255, 246, 246);
+}
+
+.logo{
+    background-image: url('IMG/Picture1.png');
+    background-size:contain;
+    background-position: 0%;
+    background-repeat: no-repeat;
+    width: 40vw;
+    height: 10vh;
+    border-color: bisque;
+    position: absolute;
+    top:0;
+}
+
+.container{
+    background-color:  rgba(211, 211, 211, 0.6);
+    color: rgb(0, 149, 214);
+    font-weight: bold;
+    min-height: 60vh;
+    /* display: flex; */
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+    border-radius: 10px;
+    padding: 2vh;
+    min-width: 50%;
+    max-width: 90%;
+}
+.mb-3{
+    margin: 5%;
+ 
+}
+.btn{
+    width: 100%;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 20px;
+    background-color: rgba(196, 217, 255, 0);
+    border-color: rgb(0, 149, 214);
+    color: rgb(0, 149, 214) ;
+}
+
+.btn:hover{
+    background-color: rgb(0, 149, 214);
+}
+
+.btn:disabled{
+    background-color: rgba(196, 217, 255, 0);
+    border-color: rgb(0, 149, 214);
+}
+
+.form-select:disabled{
+    background-color: #ced5dd;
+}
+
+.form-select option{
+    font-weight: 600;
+}
+
+.form-select option:disabled{
+    font-weight: 350;
+}

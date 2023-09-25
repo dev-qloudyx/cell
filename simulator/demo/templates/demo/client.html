@@ -1,0 +1,18 @@
+{% extends 'demo/base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block form %}
+<div class="mb-3">
+    <h2>To receive your simulation, please fill the following fields:</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{form|crispy}}
+        <input type="hidden" name="sentvideo" value="{{video}}"> <br>
+        <input type="submit" value="Submit" class="btn btn-primary">
+        
+    </form>
+
+    
+</div>
+{% endblock %}

@@ -1,0 +1,101 @@
+{% extends 'demo/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block form %}
+
+
+<div class="mb-3">
+    
+    <form method="post">
+        {% csrf_token %}
+        <ol>
+            <li >
+                <div >
+                    <span class="form-label">{{form.freezer.label}}<br></span>
+                    <span class="abc">{{form.freezer}}<br></span>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <span class="form-label">{{form.container.label}}</span><br>
+                    <span class="">{{form.container}}</span><br>
+                </div>
+            </li>
+
+            <ol>
+                <li>
+                    <div >
+                        <span class="form-label">{{form.subcontainer.label}}</span><br>
+                        <span class="">{{form.subcontainer}}</span><br>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <span class="form-label">{{form.fill.label}}</span><br>
+                        <span class="">{{form.fill}}</span><br>
+                    </div>
+                </li>
+
+            </ol>
+            
+            <li>
+                <div>
+                    <span class="form-label">{{form.biomixture.label}}</span><br>
+                    <span class="">{{form.biomixture}}</span><br>
+                </div>
+            </li>
+
+            <ol>
+                <li>
+                    <div >
+                        <span class="form-label">{{form.solutefraction.label}}</span><br>
+                        <span class="">{{form.solutefraction}}</span><br>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <span class="form-label">{{form.transitiontemp.label}}</span><br>
+                        <span class="">{{form.transitiontemp}}</span><br>
+                    </div>
+                </li>
+            </ol>
+
+            
+
+            <li>
+                <div>
+                    <span class="form-label">{{form.cooling.label}}</span><br>
+                    <span class="">{{form.cooling}}</span><br>
+                </div>
+            </li>
+            <ol >
+                <li>
+                    <div>
+                        <span class="form-label">{{form.finaltemp.label}}</span><br>
+                        <span class="">{{form.finaltemp}}</span><br>
+                    </div>
+                </li>
+
+            </ol>
+
+            
+        </ol>
+
+    
+        <input type="submit" value="Run Simulation" class="btn btn-primary">
+    </form>
+</div>
+
+
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script src="{% static 'demo/teste.js' %}"></script>
+
+{% endblock %}
+
+
