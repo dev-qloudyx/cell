@@ -3,6 +3,9 @@ from django.forms.models import BaseModelForm
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic.edit import FormView, CreateView
+from demo.tasks import send_mail_after_delay
+
+from simulator import settings
 from .models import Client
 from .forms import ClientForm, MainForm
 from django.urls import reverse_lazy 
@@ -160,19 +163,22 @@ class ClientForm(CreateView):
 
         email_subject = 'Hello ' + str(name) + ' from ' + str(company)
         email_body = 'Your simulation was submitted successfully. '
-        from_email = email2
+        from_email = settings.EMAIL_HOST_USER
         recipient_list = [email1]
 
         email_subject1 = 'Simulation submitted from ' + str(name) + ' from company ' + str(company)
         email_body1 = 'The video number and report is ' + str(vidnum)
-        from_email1 = email1
-        recipient_list1 = [email2]
+        from_email1 = settings.EMAIL_HOST_USER
+        recipient_list1 = [email1]
         
-        with get_connection() as connection:
-            mail1 = EmailMessage(email_subject, email_body, from_email, recipient_list,  connection=connection)
-            mail2 = EmailMessage(email_subject1, email_body1, from_email1, recipient_list1,  connection=connection)
-            mail1.send()
-            mail2.send()
+        mail1 = EmailMessage(email_subject, email_body, from_email, recipient_list)
+        
+        mail1.send()
+
+        task = send_mail_after_delay.apply_async(
+                (email_subject1, email_body1, from_email1, recipient_list1),
+                countdown=1800
+            )
 
         return super().form_valid(form)
         
