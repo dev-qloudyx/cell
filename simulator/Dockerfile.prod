@@ -1,4 +1,4 @@
-FROM python:bullseye
+FROM python:3.10.13-bullseye
 
 # Create the 'app' user and group with specific user ID and group ID
 RUN groupadd -g 999 app && useradd -r -u 999 -g app app
