@@ -60,75 +60,8 @@ class MainForm(FormView):
             check_solute(vdt)
 
 
-        # video = 0
-        # if "CELL" in options:
-        #     video += 1
-        #     if "0.15" in options:
-        #         if "1" in options:
-        #             print("1")
-        #             print(video)
-        #         else:
-        #             print("2")
-        #     elif "0.10" in options:
-        #         if "1" in options:
-        #             print("3")
-        #         else:
-        #             print("4")
-        #     elif "0.05" in options:
-        #         if "1" in options:
-        #             print("5")
-        #         else:
-        #             print("6")
-        #     elif "0.01" in options: 
-        #             if "1" in options:
-        #                 print("7")
-        #             else:
-        #                 print("8")
-        # else:
-        #     video += 9
-        #     if "0.15" in options:
-        #         if "1" in options:
-        #             print("9")
-        #         else:
-        #             print("10")
-        #     elif "0.10" in options:
-        #         if "1" in options:
-        #             print("11")
-        #         else:
-        #             print("12")
-        #     elif "0.05" in options:
-        #         if "1" in options:
-        #             print("13")
-        #         else:
-        #             print("14")
-        #     elif "0.01" in options:
-        #             if "1" in options:
-        #                 print("15")
-        #             else:
-        #                 print("16")
-                
-            
-                
-
         return super().form_valid(form)
 
-    # def __init__(self, **kwargs):
-    #     disable_choice = ["Bag"]
-    #     for choice in MainForm :
-    #         if choice == disable_choice:
-
-
-
-
-
-# def registration_view(request):
-#     if request.method == 'POST':
-#         form = MainForm(request.POST)     
-#     else:
-#         form = MainForm()
-
-#     return render(request, 'demo/simulator.html', {'form': form})
-    
 class ClientForm(CreateView):
     model = Client
     fields = ["name","company", "email"]
@@ -142,15 +75,6 @@ class ClientForm(CreateView):
         return context
     
 
-    # def get_initial(self):
-    #         initial = super().get_initial()
-    #         vidnum = self.request.session.get('vidnum', 1)  # Get the 'video' value from the session
-    #         initial['video'] = vidnum  # Set the 'video' value in the initial data
-    #         return initial
-
-
-
-
     def form_valid(self, form):
         
         bug = self.request.POST
@@ -159,21 +83,36 @@ class ClientForm(CreateView):
         company = form.cleaned_data['company']
         vidnum = self.request.session.get('vidnum', 1 )
         email1 = form.cleaned_data['email']
-        email2 = 'muffs2398@gmail.com'
 
+    #Mail to self(host) - Este email é para o host com os dados do cliente
+
+        # email_subject2 = 'Simulation submitted from ' + str(name) + ' from company ' + str(company)
+        # email_body2 = 'New simulation submitted.'
+        # from_email2 = settings.EMAIL_HOST_USER
+        # recipient_list2 = settings.EMAIL_HOST_USER
+        # mail3 = EmailMessage(email_subject2, email_body2, from_email2, recipient_list2)
+        # mail3.send()
+
+
+    #1º email para o cliente
         email_subject = 'Hello ' + str(name) + ' from ' + str(company)
         email_body = 'Your simulation was submitted successfully. '
         from_email = settings.EMAIL_HOST_USER
         recipient_list = [email1]
 
-        email_subject1 = 'Simulation submitted from ' + str(name) + ' from company ' + str(company)
-        email_body1 = 'The video number and report is ' + str(vidnum)
+        mail1 = EmailMessage(email_subject, email_body, from_email, recipient_list)
+        mail1.send()
+
+    #2º email para o cliente 30 minutos depois
+        email_subject1 = 'Simulation results'
+        email_body1 = 'Here are your simulation results.'
         from_email1 = settings.EMAIL_HOST_USER
         recipient_list1 = [email1]
-        
-        mail1 = EmailMessage(email_subject, email_body, from_email, recipient_list)
-        
-        mail1.send()
+
+        mail2 = EmailMessage(email_subject1, email_body1, from_email1, recipient_list1)
+        mail2.attach_file('demo\static\demo\FILES\Video'+str(vidnum)+'.mp4')
+        mail2.attach_file('demo\static\demo\FILES\Report'+str(vidnum)+'.pdf')
+        # mail2.send()
 
         task = send_mail_after_delay.apply_async(
                 (email_subject1, email_body1, from_email1, recipient_list1),
