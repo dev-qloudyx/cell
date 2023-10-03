@@ -110,13 +110,17 @@ class ClientForm(CreateView):
         from_email1 = settings.EMAIL_HOST_USER
         recipient_list1 = [email1]
 
-        mail2 = EmailMessage(email_subject1, email_body1, from_email1, recipient_list1)
-        mail2.attach_file('demo\static\demo\FILES\Video'+str(vidnum)+'.mp4')
-        mail2.attach_file('demo\static\demo\FILES\Report'+str(vidnum)+'.pdf')
-        # mail2.send()
+        #mail2 = EmailMessage(email_subject1, email_body1, from_email1, recipient_list1)
+        #mail2.attach_file('demo\static\demo\FILES\Video'+str(vidnum)+'.mp4')
+        #mail2.attach_file('demo\static\demo\FILES\Report'+str(vidnum)+'.pdf')
+        
+        base_path = 'demo/static/demo/FILES/'
+        video_file = f'{base_path}Video{vidnum}.mp4'
+        report_file = f'{base_path}Report{vidnum}.pdf'
+
 
         task = send_mail_after_delay.apply_async(
-                (email_subject1, email_body1, from_email1, recipient_list1),
+                (email_subject1, email_body1, from_email1, recipient_list1, video_file, report_file),
                 countdown=1800
             )
 
