@@ -89,7 +89,7 @@ class ClientForm(CreateView):
 
         email_subject2 = 'Simulation submitted from ' + str(name) + ' from company ' + str(company)
         email_body2 = 'New simulation submitted from ' + str(email1) +  ' .'
-        from_email2 = [settings.EMAIL_HOST_USER]
+        from_email2 = settings.EMAIL_HOST_USER
         recipient_list2 = [settings.EMAIL_HOST_USER]
         mail3 = EmailMessage(email_subject2, email_body2, from_email2, recipient_list2)
         mail3.send()
