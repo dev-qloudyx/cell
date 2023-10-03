@@ -11,6 +11,7 @@ from .forms import ClientForm, MainForm
 from django.urls import reverse_lazy 
 from django.core.mail import send_mail, get_connection
 from django.core.mail.message import EmailMessage
+from django.contrib import messages
 # Create your views here.
 
 
@@ -118,6 +119,9 @@ class ClientForm(CreateView):
                 (email_subject1, email_body1, from_email1, recipient_list1),
                 countdown=1800
             )
+
+        messages.success(self.request, "Simulation submitted successfully")
+        
 
         return super().form_valid(form)
         
