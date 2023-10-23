@@ -1,5 +1,6 @@
 body{
-    background-color: rgb(255, 246, 246);
+    background-color: rgb(253, 253, 253);
+    overflow-y:scroll ;
 }
 
 .logo{
@@ -7,32 +8,47 @@ body{
     background-size:contain;
     background-position: 0%;
     background-repeat: no-repeat;
-    width: 40vw;
+    width: 375px;
     height: 10vh;
     border-color: bisque;
     position: absolute;
     top:0;
+    
 }
 
 .container{
-    background-color:  rgba(211, 211, 211, 0.6);
+    background-color:  rgb(253, 253, 253);
     color: rgb(0, 149, 214);
     font-weight: bold;
-    min-height: 60vh;
-    /* display: flex; */
+    min-height: 70vh;
+    display: flex;
+    flex-direction:column;
+    
     margin-top: 10vh;
     margin-bottom: 10vh;
     border-radius: 10px;
     padding: 2vh;
-    min-width: 50%;
-    max-width: 90%;
+    min-width: 400px;
+    max-width: fit-content;
 }
 .mb-3{
-    margin: 5%;
- 
+    margin: 2%;
+    min-width: 355px;
+    max-width: 25%;
+    
+
+}
+.mb-32{
+    margin: 2%;
+    min-width: 355px;
+    max-width: 25%;
+    top: 150px;
+    position: relative;
 }
 .btn{
     width: 100%;
+    /* width: 75%; */
+    /* transform: translate(20%); */
     text-transform: uppercase;
     font-weight: bold;
     border-radius: 20px;
@@ -46,16 +62,19 @@ body{
 }
 
 .btn:disabled{
-    background-color: rgba(196, 217, 255, 0);
+    background-color: rgba(0, 149, 214);
     border-color: rgb(0, 149, 214);
 }
 
 .form-select:disabled{
-    background-color: #ced5dd;
+    background-color: #CED5DD;
 }
 
 .form-select option{
     font-weight: 600;
+}
+.form-select option::selection{
+    background-color: black;
 }
 
 .form-select option:disabled{
@@ -63,4 +82,84 @@ body{
 }
 .messages{
     font-size: 35px;
+
+}
+
+.image{
+    width: 500px;
+    height: auto;
+    background-image: url('IMG/vial2.jpg');
+    background-size:cover;
+    /* background-position: -50px; */
+    background-repeat: no-repeat;
+    border-radius: 10px;
+    opacity: 0.9;
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: auto ;
+    grid-auto-columns: 100%;
+    grid-gap: 50px;
+    
+}
+
+.grid2{
+    display: grid;
+    grid-template-columns: auto ;
+    grid-auto-columns: 100%;
+    grid-gap: 30px;
+
+}
+
+@media (min-width: 600px) {
+    .grid2 {grid-template-columns: repeat(2, 0.5fr);
+            height: 800px; }
+}
+
+@media (min-width: 600px) {
+    .grid { grid-template-columns: repeat(2, auto); }
+}
+
+.footerstripe{
+    background-color: #14A7E1;
+    height: 1vh;
+    width: 100%;
+    
+}
+.footer{
+    background-color: black;
+    height: 135px;
+    width: 100%;
+}
+.footer img{
+    width: 250px; 
+}
+
+.footer .imglink{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 380px;
+}
+.form-select{
+    /* background-color: #F5F5F5; */
+    background-color: #19adfd29;
+    /* background-color: #c7c7c729; */
+
+}
+.icons{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 240px;
+    
+}
+i{
+    margin-right: 10px;
+    color: white;
+}
+
+i:hover{
+ color: #14A7E1;
 }

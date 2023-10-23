@@ -85,19 +85,48 @@ class ClientForm(CreateView):
         vidnum = self.request.session.get('vidnum', 1 )
         email1 = form.cleaned_data['email']
 
-    #Mail to self(host) - Este email é para o host com os dados do cliente
+    #1º Mail to self(host) - Este email é para o host com os dados do cliente
 
-        email_subject2 = 'Simulation submitted from ' + str(name) + ' from company ' + str(company)
-        email_body2 = 'New simulation submitted from ' + str(email1) +  ' .'
+        email_subject2 = 'New Simulation Submitted'
+        email_body2 = '''
+New simulation submitted from ''' + str(name) +  ''' with the email '''  + str(email1) + '''.
+
+The set of selected options is ''' + str(vidnum)
         from_email2 = settings.EMAIL_HOST_USER
         recipient_list2 = [settings.EMAIL_HOST_USER]
         mail3 = EmailMessage(email_subject2, email_body2, from_email2, recipient_list2)
+        mail3.attach_file('demo\static\demo\IMG\Sets.png')
         mail3.send()
+
+    #2º Mail to self(host) - Este email é para ser enviado 30 minutos depois
+        email_subject3 = 'Report Sent'
+        email_body3 = '''Report sent to from ''' + str(name) +  ''' with the email '''  + str(email1) + '''.'''
+
+
+#################################################################################################
+#Victor este email vai da smartfreez para a smartfreez 30 minutos depois como o outro confirma se está bem feito e se precisa de alguma alteração sff
+
+        # task = send_mail_after_delay.apply_async(
+        #         (email_subject3, email_body3, from_email2, recipient_list2),
+        #         countdown=1800
+        #     )
+############################################################################################################
 
 
     #1º email para o cliente
-        email_subject = 'Hello ' + str(name) + ' from ' + str(company)
-        email_body = 'Your simulation was submitted successfully. '
+        email_subject = 'SMARTFREEZSIM Platform - Preparing your Simulation!'
+        email_body = '''
+Dear  ''' + str(name) + ''',
+Thank you for your submission to the SMARTFREEZSIM  platform. We are delighted to welcome you to our simulation network, your interest and collaboration is greatly appreciated.
+        
+In the next hour, you will receive a simulation that has been developed with the parameters you selected in the SMARTFREEZSIM platform.
+We hope that our simulations can provide useful insight. If you have any questions or require assistance, please do not hesitate to contact us at support@smartfreez.com.
+
+We hope this can be the start of a fruitfull collaboration.
+
+Best regards,
+The SMARTFREEZ team'''
+
         from_email = settings.EMAIL_HOST_USER
         recipient_list = [email1]
 
@@ -105,14 +134,20 @@ class ClientForm(CreateView):
         mail1.send()
 
     #2º email para o cliente 30 minutos depois
-        email_subject1 = 'Simulation results'
-        email_body1 = 'Here are your simulation results.'
+        email_subject1 = 'SMARTFREEZSIM Platform - Your Simulation is ready!'
+        email_body1 = '''
+Dear  ''' + str(name) + ''',
+
+Your simulation in our SMARTFREEZSIM platform is now ready. You will find it below with the related Report.
+
+For more SMARTFREEZSIM parameters, SMARTFREEZ solutions or other information, please contact our team at info@smartfreez.com.     
+
+Best regards,
+The SMARTFREEZ team'''
         from_email1 = settings.EMAIL_HOST_USER
         recipient_list1 = [email1]
 
-        #mail2 = EmailMessage(email_subject1, email_body1, from_email1, recipient_list1)
-        #mail2.attach_file('demo\static\demo\FILES\Video'+str(vidnum)+'.mp4')
-        #mail2.attach_file('demo\static\demo\FILES\Report'+str(vidnum)+'.pdf')
+       
         
         base_path = 'demo/static/demo/FILES/'
         video_file = f'{base_path}Video{vidnum}.mp4'
