@@ -1,20 +1,14 @@
-from typing import Any
-from django.forms.models import BaseModelForm
-from django.http import HttpResponse
-from django.shortcuts import render
 from django.views.generic.edit import FormView, CreateView
-from demo.tasks import send_mail_after_delay
-
+from demo.tasks import send_mail_after_delay, send_mail_after_delay_2
 from simulator import settings
 from .models import Client
-from .forms import ClientForm, MainForm
+from .forms import MainForm
 from django.urls import reverse_lazy 
-from django.core.mail import send_mail, get_connection
 from django.core.mail.message import EmailMessage
 from django.contrib import messages
+
+
 # Create your views here.
-
-
 
 class MainForm(FormView):
     form_class = MainForm
@@ -95,7 +89,8 @@ The set of selected options is ''' + str(vidnum)
         from_email2 = settings.EMAIL_HOST_USER
         recipient_list2 = [settings.EMAIL_HOST_USER]
         mail3 = EmailMessage(email_subject2, email_body2, from_email2, recipient_list2)
-        mail3.attach_file('demo\static\demo\IMG\Sets.png')
+
+        mail3.attach_file('demo/static/demo/IMG/Sets.png')
         mail3.send()
 
     #2º Mail to self(host) - Este email é para ser enviado 30 minutos depois
@@ -103,16 +98,11 @@ The set of selected options is ''' + str(vidnum)
         email_body3 = '''Report sent to from ''' + str(name) +  ''' with the email '''  + str(email1) + '''.'''
 
 
-#################################################################################################
-#Victor este email vai da smartfreez para a smartfreez 30 minutos depois como o outro confirma se está bem feito e se precisa de alguma alteração sff
-
-        # task = send_mail_after_delay.apply_async(
-        #         (email_subject3, email_body3, from_email2, recipient_list2),
-        #         countdown=1800
-        #     )
-############################################################################################################
-
-
+        task = send_mail_after_delay_2.apply_async(
+                (email_subject3, email_body3, from_email2, recipient_list2),
+                countdown=1800
+            )
+        
     #1º email para o cliente
         email_subject = 'SMARTFREEZSIM Platform - Preparing your Simulation!'
         email_body = '''
