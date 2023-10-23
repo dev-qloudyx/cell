@@ -97,7 +97,7 @@ body{
     background-position: -50px;
     background-repeat: no-repeat;
     border-radius: 10px;
-    opacity: 0.9;
+    opacity: 0.8;
 }
 
 .grid{
@@ -171,6 +171,12 @@ body{
     /* background-color: #c7c7c729; */
 
 }
+form input[type="text"]{
+    background-color: #F5F5F5;
+}
+form input[type="email"]{
+    background-color: #F5F5F5;
+}
 .icons{
     margin-top: 20px;
     display: block;
@@ -187,4 +193,7 @@ i{
 
 i:hover{
  color: #14A7E1;
+}
+ol{
+    margin: 0px;
 }
