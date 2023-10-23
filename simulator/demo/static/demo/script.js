@@ -35,10 +35,12 @@ addClass("id_fill");
 addClass("id_biomixture");
 addClass("id_solutefraction");
 addClass("id_transitiontemp");
-document.getElementById("id_transitiontemp").style.background = '#ced5dd';
+document.getElementById("id_transitiontemp").style.background = '#ced5dd82';
+document.getElementById("id_transitiontemp").style.color = 'rgb(136, 136, 136)';
 addClass("id_cooling");
 addClass("id_finaltemp");
-document.getElementById("id_finaltemp").style.background = '#ced5dd';
+document.getElementById("id_finaltemp").style.background = '#ced5dd82';
+document.getElementById("id_finaltemp").style.color = 'rgb(136, 136, 136)';
 
 
 const elements = document.querySelectorAll("select");

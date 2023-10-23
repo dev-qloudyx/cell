@@ -1,6 +1,9 @@
 body{
     background-color: rgb(253, 253, 253);
     overflow-y:scroll ;
+    overflow-x: hidden;
+    width: 100vw;
+    height: 100vh;
 }
 
 .logo{
@@ -8,7 +11,7 @@ body{
     background-size:contain;
     background-position: 0%;
     background-repeat: no-repeat;
-    width: 375px;
+    width: 300px;
     height: 10vh;
     border-color: bisque;
     position: absolute;
@@ -67,7 +70,8 @@ body{
 }
 
 .form-select:disabled{
-    background-color: #CED5DD;
+    background-color: #ced5dd82;
+    color: rgb(136, 136, 136);
 }
 
 .form-select option{
@@ -125,15 +129,34 @@ body{
     background-color: #14A7E1;
     height: 1vh;
     width: 100%;
+    margin: 0px;
     
 }
 .footer{
     background-color: black;
     height: 135px;
-    width: 100%;
+    min-width: 100vw;
+    
+}
+
+.footergrid{
+    margin-top: 10px;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 500px 500px;
+    grid-gap: 30px;
+}
+
+@media (max-width: 600px) {
+    .footergrid { grid-template-columns: 225px 120px;
+        grid-gap: 20px; }
+    .footer{
+        width: 412px;
+    }
 }
 .footer img{
     width: 250px; 
+ 
 }
 
 .footer .imglink{
@@ -143,20 +166,22 @@ body{
     width: 380px;
 }
 .form-select{
-    /* background-color: #F5F5F5; */
-    background-color: #19adfd29;
+    background-color: #F5F5F5;
+    /* background-color: #19adfd29; */
     /* background-color: #c7c7c729; */
 
 }
 .icons{
+    margin-top: 20px;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 240px;
+    width: 150px;
+    justify-content: end;
     
 }
 i{
-    margin-right: 10px;
+    margin-left: 10px;
     color: white;
 }
 
