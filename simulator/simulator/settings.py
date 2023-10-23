@@ -163,4 +163,5 @@ CELERY_CACHE_BACKEND = 'django-cache'
 CELERY_RESULT_EXTENDED = True
 CELERY_TASK_ROUTES = {
     'demo.tasks.send_mail_after_delay': {'queue': 'simulator1'},
+    'demo.tasks.send_mail_after_delay_2': {'queue': 'simulator1'},
 }
