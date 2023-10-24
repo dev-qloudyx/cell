@@ -106,13 +106,13 @@ The set of selected options is ''' + str(vidnum)
     #1º email para o cliente
         email_subject = 'SMARTFREEZSIM Platform - Preparing your Simulation!'
         email_body = '''
-Dear  ''' + str(name) + ''',
-Thank you for your submission to the SMARTFREEZSIM  platform. We are delighted to welcome you to our simulation network, your interest and collaboration is greatly appreciated.
+Dear ''' + str(name) + ''',
+Thank you for your submission to the SMARTFREEZSIM platform. We are delighted to welcome you to our simulation network, your interest and collaboration is greatly appreciated.
         
 In the next hour, you will receive a simulation that has been developed with the parameters you selected in the SMARTFREEZSIM platform.
 We hope that our simulations can provide useful insight. If you have any questions or require assistance, please do not hesitate to contact us at support@smartfreez.com.
 
-We hope this can be the start of a fruitfull collaboration.
+We expect this can be the start of a fruitfull collaboration.
 
 Best regards,
 The SMARTFREEZ team'''
@@ -126,7 +126,7 @@ The SMARTFREEZ team'''
     #2º email para o cliente 30 minutos depois
         email_subject1 = 'SMARTFREEZSIM Platform - Your Simulation is ready!'
         email_body1 = '''
-Dear  ''' + str(name) + ''',
+Dear ''' + str(name) + ''',
 
 Your simulation in our SMARTFREEZSIM platform is now ready. You will find it below with the related Report.
 
