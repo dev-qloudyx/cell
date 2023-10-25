@@ -72,6 +72,73 @@ class ClientForm(CreateView):
 
     def form_valid(self, form):
         
+        parameters = { 
+            1: {"Type of Freezer":"CELL (SmartFreez's unidirectional CRF)",
+                  "Mass fraction of DMSO":"0.15",
+                  "Cooling rate (ºC/min)":"1"
+                  },
+            2: {"Type of Freezer":"CELL (SmartFreez's unidirectional CRF)",
+                  "Mass fraction of DMSO":"0.15",
+                  "Cooling rate (ºC/min)":"5"
+                  },
+            3: {"Type of Freezer":"CELL (SmartFreez's unidirectional CRF)",
+                  "Mass fraction of DMSO":"0.10",
+                  "Cooling rate (ºC/min)":"1"
+                  },
+            4: {"Type of Freezer":"CELL (SmartFreez's unidirectional CRF)",
+                  "Mass fraction of DMSO":"0.10",
+                  "Cooling rate (ºC/min)":"5"
+                  },
+            5: {"Type of Freezer":"CELL (SmartFreez's unidirectional CRF)",
+                  "Mass fraction of DMSO":"0.05",
+                  "Cooling rate (ºC/min)":"1"
+                  },
+            6: {"Type of Freezer":"CELL (SmartFreez's unidirectional CRF)",
+                  "Mass fraction of DMSO":"0.05",
+                  "Cooling rate (ºC/min)":"5"
+                  },
+            7: {"Type of Freezer":"CELL (SmartFreez's unidirectional CRF)",
+                  "Mass fraction of DMSO":"0.01",
+                  "Cooling rate (ºC/min)":"1"
+                  },
+            8: {"Type of Freezer":"CELL (SmartFreez's unidirectional CRF)",
+                  "Mass fraction of DMSO":"0.01",
+                  "Cooling rate (ºC/min)":"5"
+                  },
+            9: {"Type of Freezer":"Radial freezer (e.g., CoolCell®)",
+                  "Mass fraction of DMSO":"0.15",
+                  "Cooling rate (ºC/min)":"1"
+                  },
+            10: {"Type of Freezer":"Radial freezer (e.g., CoolCell®)",
+                  "Mass fraction of DMSO":"0.15",
+                  "Cooling rate (ºC/min)":"5"
+                  },
+            11: {"Type of Freezer":"Radial freezer (e.g., CoolCell®)",
+                  "Mass fraction of DMSO":"0.10",
+                  "Cooling rate (ºC/min)":"1"
+                  },
+            12: {"Type of Freezer":"Radial freezer (e.g., CoolCell®)",
+                  "Mass fraction of DMSO":"0.10",
+                  "Cooling rate (ºC/min)":"5"
+                  },
+            13: {"Type of Freezer":"Radial freezer (e.g., CoolCell®)",
+                  "Mass fraction of DMSO":"0.05",
+                  "Cooling rate (ºC/min)":"1"
+                  },
+            14: {"Type of Freezer":"Radial freezer (e.g., CoolCell®)",
+                  "Mass fraction of DMSO":"0.05",
+                  "Cooling rate (ºC/min)":"5"
+                  },
+            15: {"Type of Freezer":"Radial freezer (e.g., CoolCell®)",
+                  "Mass fraction of DMSO":"0.01",
+                  "Cooling rate (ºC/min)":"1"
+                  },
+            16: {"Type of Freezer":"Radial freezer (e.g., CoolCell®)",
+                  "Mass fraction of DMSO":"0.01",
+                  "Cooling rate (ºC/min)":"5"
+                  },
+        }
+
         bug = self.request.POST
         print(bug)
         name = form.cleaned_data['name']
@@ -85,12 +152,16 @@ class ClientForm(CreateView):
         email_body2 = '''
 New simulation submitted from ''' + str(name) +  ''' with the email '''  + str(email1) + '''.
 
-The set of selected options is ''' + str(vidnum)
+The set of selected options is:
+
+Type of Freezer: ''' + str(parameters[vidnum]["Type of Freezer"]) + '''
+Biomixture: DMSO + Culture medium
+Mass fraction of DMSO: ''' + str(parameters[vidnum]["Mass fraction of DMSO"]) + '''
+Cooling rate (ºC/min): ''' + str(parameters[vidnum]["Cooling rate (ºC/min)"])
+        
         from_email2 = settings.EMAIL_HOST_USER
         recipient_list2 = [settings.EMAIL_HOST_USER]
         mail3 = EmailMessage(email_subject2, email_body2, from_email2, recipient_list2)
-
-        mail3.attach_file('demo/static/demo/IMG/Sets.png')
         mail3.send()
 
     #2º Mail to self(host) - Este email é para ser enviado 30 minutos depois
@@ -104,12 +175,12 @@ The set of selected options is ''' + str(vidnum)
             )
         
     #1º email para o cliente
-        email_subject = 'SMARTFREEZSIM Platform - Preparing your Simulation!'
+        email_subject = 'SMARTFREEZSIM® Platform - Preparing your Simulation!'
         email_body = '''
 Dear ''' + str(name) + ''',
-Thank you for your submission to the SMARTFREEZSIM platform. We are delighted to welcome you to our simulation network, your interest and collaboration is greatly appreciated.
+Thank you for your submission to the SMARTFREEZSIM® platform. We are delighted to welcome you to our simulation network, your interest and collaboration is greatly appreciated.
         
-In the next hour, you will receive a simulation that has been developed with the parameters you selected in the SMARTFREEZSIM platform.
+In the next hour, you will receive a simulation that has been developed with the parameters you selected in the SMARTFREEZSIM® platform.
 We hope that our simulations can provide useful insight. If you have any questions or require assistance, please do not hesitate to contact us at support@smartfreez.com.
 
 We expect this can be the start of a fruitfull collaboration.
@@ -124,16 +195,22 @@ The SMARTFREEZ team'''
         mail1.send()
 
     #2º email para o cliente 30 minutos depois
-        email_subject1 = 'SMARTFREEZSIM Platform - Your Simulation is ready!'
+        email_subject1 = 'SMARTFREEZSIM® Platform - Your Simulation is ready!'
         email_body1 = '''
 Dear ''' + str(name) + ''',
 
-Your simulation in our SMARTFREEZSIM platform is now ready. You will find it below with the related Report.
+Your simulation in our SMARTFREEZSIM® platform is now ready. You will find it below with the related Report for:
 
-For more SMARTFREEZSIM parameters, SMARTFREEZ solutions or other information, please contact our team at info@smartfreez.com.     
+Type of Freezer: ''' + str(parameters[vidnum]["Type of Freezer"]) + '''
+Biomixture: DMSO + Culture medium
+Mass fraction of DMSO: ''' + str(parameters[vidnum]["Mass fraction of DMSO"]) + '''
+Cooling rate (ºC/min): ''' + str(parameters[vidnum]["Cooling rate (ºC/min)"]) + '''
+
+For more SMARTFREEZSIM® parameters, SMARTFREEZ solutions or other information, please contact our team at info@smartfreez.com.     
 
 Best regards,
 The SMARTFREEZ team'''
+
         from_email1 = settings.EMAIL_HOST_USER
         recipient_list1 = [email1]
 

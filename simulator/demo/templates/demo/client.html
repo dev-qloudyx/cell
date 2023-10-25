@@ -3,6 +3,25 @@
 
 
 {% block form %}
+
+{% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <h1{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</h1>
+        {% endfor %}
+        <p>For your simulation, please check your email box (might be in your spam box).</p>
+        <p>
+            If you don't receive any news from us in the following hour, 
+            please contact our support team by
+            <a href="mailto:support@smartfreez.com">support@smartfreez.com</a>.
+        </p>
+        <br>
+        <p>For a New Formulation <span class="redirect" onclick="send()">Press Here</span></p>
+        <br>
+            
+    </div>
+{% endif %}
+
 <div class="grid2">
 <div class="mb-32">
     <h2>To receive your simulation, please fill the following fields:</h2>
@@ -18,4 +37,10 @@
 </div>
 <div class="image"></div>
 </div>
+<script>
+    const send = () =>{
+        console.log("Hello");
+        window.location.href = "http://127.0.0.1:8000";
+}
+</script>
 {% endblock %}
