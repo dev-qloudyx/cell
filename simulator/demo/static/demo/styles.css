@@ -32,15 +32,20 @@ body{
     border-radius: 10px;
     padding: 2vh;
     min-width: 400px;
-    max-width: fit-content;
+    max-width: 950px;
 }
 .mb-3{
     margin: 2%;
     min-width: 355px;
     max-width: 25%;
-    
-
 }
+.mb-3 p{
+color: black;
+text-align: justify;
+font-weight: lighter;
+margin-bottom: 10px;
+}
+
 .mb-32{
     margin: 2%;
     min-width: 355px;
@@ -90,15 +95,17 @@ body{
 }
 
 .image{
-    width: 500px;
+    width: 525px;
     height: auto;
-    background-image: url('IMG/nucleation.jpeg');
+    background-image: url('IMG/Image.jfif');
     background-size:cover;
-    background-position: -50px;
+    background-position: center;
     background-repeat: no-repeat;
     border-radius: 10px;
     opacity: 0.8;
 }
+
+
 
 .grid{
     display: grid;
@@ -119,11 +126,9 @@ body{
 @media (min-width: 600px) {
     .grid2 {grid-template-columns: repeat(2, 0.5fr);
             height: 800px; }
+    .grid { grid-template-columns: 370px 500px; }
 }
 
-@media (min-width: 600px) {
-    .grid { grid-template-columns: repeat(2, auto); }
-}
 
 .footerstripe{
     background-color: #14A7E1;
@@ -134,10 +139,11 @@ body{
 }
 .footer{
     background-color: black;
-    height: 135px;
+    height: 150px;
     min-width: 100vw;
     
 }
+
 
 .footergrid{
     margin-top: 10px;
@@ -152,6 +158,14 @@ body{
         grid-gap: 20px; }
     .footer{
         width: 412px;
+        height: 200px;
+    }
+}
+@media (max-width: 850px) and (min-width: 600px) {
+
+    .footer{
+        width: 1000px;
+        height: 200px;
     }
 }
 .footer img{
