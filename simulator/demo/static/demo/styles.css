@@ -39,7 +39,7 @@ body{
     min-width: 355px;
     max-width: 25%;
 }
-.mb-3 p{
+.text p{
 color: black;
 text-align: justify;
 font-weight: lighter;
@@ -122,7 +122,7 @@ margin-bottom: 10px;
 
 .image{
     width: 525px;
-    height: auto;
+    height: 800px;
     background-image: url('IMG/Image.jfif');
     background-size:cover;
     background-position: center;
@@ -130,7 +130,6 @@ margin-bottom: 10px;
     border-radius: 10px;
     opacity: 0.8;
 }
-
 
 
 .grid{
