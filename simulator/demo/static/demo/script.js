@@ -2,26 +2,26 @@ const disable_option = (id_select, num_option) =>{
     document.querySelector(`${id_select} option:nth-child(${num_option})`).disabled = true;
 }
 
-disable_option("#id_freezer", "2");
 disable_option("#id_freezer", "3");
-disable_option("#id_freezer", "5");
+disable_option("#id_freezer", "4");
+disable_option("#id_freezer", "6");
 
-disable_option("#id_container", "1");
+disable_option("#id_container", "2");
 
-disable_option("#id_subcontainer", "1");
-disable_option("#id_subcontainer", "3");
+disable_option("#id_subcontainer", "2");
+disable_option("#id_subcontainer", "4");
 
-disable_option("#id_fill", "2");
 disable_option("#id_fill", "3");
 disable_option("#id_fill", "4");
+disable_option("#id_fill", "5");
 
-disable_option("#id_biomixture", "1");
-disable_option("#id_biomixture", "3");
+disable_option("#id_biomixture", "2");
+disable_option("#id_biomixture", "4");
 
-disable_option("#id_solutefraction", "4");
+disable_option("#id_solutefraction", "5");
 
-disable_option("#id_cooling", "1");
-disable_option("#id_cooling", "3");
+disable_option("#id_cooling", "2");
+disable_option("#id_cooling", "4");
 
 function addClass(divname) {
     var element = document.getElementById(divname);
@@ -56,16 +56,16 @@ const show2 = () => {
     
     if (currentSelect && nextSelect && count2 < 7) {
         nextSelect.disabled = false;
-        currentSelect.removeEventListener("click", show2);
-        nextSelect.addEventListener("click", show2);
+        currentSelect.removeEventListener("change", show2);
+        nextSelect.addEventListener("change", show2);
         count2++;
 
         
     }
     if(currentSelect == elements[6]){
         document.querySelector(`.btn`).disabled = false;
-        currentSelect.removeEventListener("click", show2);
+        currentSelect.removeEventListener("change", show2);
     }
 }
 
-elements[0].addEventListener("click", show2);
+elements[0].addEventListener("change", show2);
