@@ -61,13 +61,20 @@ class ClientForm(CreateView):
     model = Client
     fields = ["name","company", "email"]
     template_name = "demo/client.html"
-    success_url = reverse_lazy('simulator')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         vidnum = self.request.session.get('vidnum', 1 )
         context['video'] = vidnum  
         return context
+    
+    def get_success_url(self):
+
+        current_path = self.request.path
+        success_url = current_path
+
+        return success_url
+
     
 
     def form_valid(self, form):
